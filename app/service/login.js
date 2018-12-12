@@ -1,11 +1,10 @@
 const Service = require('egg').Service;
 
 class LoginService extends Service {
-  async login(page = 1) {
-    // read config
-    //const { serverUrl, pageSize } = this.config.news;
+  async index({userName, passwd}) {
+    const user = await this.app.mysql.get('users', { user_name: userName });
 
-    return '';
+    return this.ctx.helper.md5asswdSalt(passwd);
   }
 }
 

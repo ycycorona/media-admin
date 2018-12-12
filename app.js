@@ -1,6 +1,6 @@
 module.exports = app => {
     app.once('server', server => {
-        console.log(app.config.env)
+        //console.log(app.config.env)
         //debugger
     });
     app.on('error', (err, ctx) => {

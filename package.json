@@ -5,7 +5,9 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
+    "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.5.0",
+    "egg-validate": "^2.0.2",
     "shortid": "^2.2.14"
   },
   "devDependencies": {
