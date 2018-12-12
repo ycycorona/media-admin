@@ -9,6 +9,7 @@ class LoginController extends Controller {
       userName: {type: 'string'},
       passwd: {type: 'string'}
     }
+    console.log(JSON.stringify(ctx.request.body))
     ctx.body = 123;
   }
 }

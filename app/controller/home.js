@@ -4,8 +4,10 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    console.log(app.middleware)
-    this.ctx.body = 3;
+    const ctx = this.ctx;
+    ctx.rotateCsrfSecret();
+    console.log(ctx.session)
+    ctx.body = 'hello';
   }
 }
 
