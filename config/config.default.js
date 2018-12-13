@@ -7,9 +7,20 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1544496710762_6467';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [ 'notfoundHandler' ];
 
-  exports.mysql = {
+
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '47.105.46.120',
+    user: 'root',
+    password: 'ycy6323892',
+    port: 3306,
+    database: 'media_db',
+    timestamps: false,
+  };
+
+/*  config.mysql = {
     // database configuration
     client: {
       // host
@@ -27,11 +38,42 @@ module.exports = appInfo => {
     app: true,
     // load into agent, default is close
     agent: false,
-  };
+  };*/
 
-  exports.logger = {
+  config.logger = {
     //dir: '/path/to/your/custom/log/dir', // 自定义日志路径
   };
+
+  config.bodyParser = {
+    jsonLimit: '1mb', //上传json文件的大小限制
+    formLimit: '1mb',
+  }
+
+  config.multipart = {
+    mode: 'file',
+  }
+  // 全局异常处理 其中404要单独处理
+  config.onerror = {
+    /*all(err, ctx) {
+      // 在此处定义针对所有响应类型的错误处理方法
+      // 注意，定义了 config.all 之后，其他错误处理方法不会再生效
+      ctx.body = 'error';
+      ctx.status = 500;
+    },*/
+/*    html(err, ctx) {
+      // html hander
+      ctx.body = '<h3>error</h3>';
+      ctx.status = 500;
+    },*/
+    json(err, ctx) {
+      // json hander
+      ctx.body = { msg: 'uncaught json error', status: '0', error: '-110' };
+      ctx.status = 500;
+    },
+/*    jsonp(err, ctx) {
+      // 一般来说，不需要特殊针对 jsonp 进行错误定义，jsonp 的错误处理会自动调用 json 错误处理，并包装成 jsonp 的响应格式
+    },*/
+  }
 
   config.security = {
     csrf: {
@@ -41,5 +83,14 @@ module.exports = appInfo => {
       sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
     },
   }
+
+  exports.session = {
+    key: '_sSS_store',
+    maxAge: 4 * 3600 * 1000, // 4小时
+    renew: true, // 自动续期
+    httpOnly: true,
+    encrypt: true,
+  };
+
   return config;
 };

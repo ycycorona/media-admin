@@ -1,18 +1,23 @@
 'use strict';
-const BaseController = require('../core/base_controller');
-class LoginController extends BaseController {
+const BaseCon = require('../core/base_controller');
+class LoginController extends BaseCon {
   async index() {
     const {ctx, service} = this;
 
     const loginParamsRules = {
       userName: {type: 'string'},
-      passwd: {type: 'string'}
+      token: {type: 'string'}
     }
-    ctx.validate(loginParamsRules);
 
+    /*ctx.validate(loginParamsRules)
+      .catch((error) => {
+        console.log(error)
+      })*/
     const result = await service.login.index(ctx.request.body)
 
-    ctx.body = BaseController.successRes(result);
+
+
+    ctx.body = BaseCon.successRes(result);
   }
 }
 
