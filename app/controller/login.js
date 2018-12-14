@@ -9,14 +9,16 @@ class LoginController extends BaseCon {
       token: {type: 'string'}
     }
 
-    /*ctx.validate(loginParamsRules)
-      .catch((error) => {
-        console.log(error)
-      })*/
+    ctx.validate(loginParamsRules)
+
+/*    try {
+
+    } catch (e) {
+      console.log(e)
+      console.log('参数错误')
+    }*/
+
     const result = await service.login.index(ctx.request.body)
-
-
-
     ctx.body = BaseCon.successRes(result);
   }
 }

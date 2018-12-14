@@ -17,10 +17,14 @@ module.exports = appInfo => {
     password: 'ycy6323892',
     port: 3306,
     database: 'media_db',
-    timestamps: false,
+    define: {
+      timestamps: false,
+      freezeTableName: true,
+      underscored: true,
+    },
   };
 
-/*  config.mysql = {
+  config.mysql = {
     // database configuration
     client: {
       // host
@@ -38,7 +42,7 @@ module.exports = appInfo => {
     app: true,
     // load into agent, default is close
     agent: false,
-  };*/
+  };
 
   config.logger = {
     //dir: '/path/to/your/custom/log/dir', // 自定义日志路径
@@ -66,8 +70,18 @@ module.exports = appInfo => {
       ctx.status = 500;
     },*/
     json(err, ctx) {
+      console.log(err)
       // json hander
-      ctx.body = { msg: 'uncaught json error', status: '0', error: '-110' };
+      ctx.body = { msg: 'uncaught json request error', status: '0', error: '-110' };
+      switch (err.code) {
+        case 'invalid_param':
+          ctx.body.msg = 'params invalid'
+          ctx.body.error = '-111'
+          break
+        default:
+          break
+      }
+      console.log(err)
       ctx.status = 500;
     },
 /*    jsonp(err, ctx) {
