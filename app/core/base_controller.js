@@ -4,16 +4,18 @@ class BaseController extends Controller {
   static successRes(data) {
     return {
       status: '1',
-      error: null,
-      msg: 'success',
       data,
+      msg: 'success',
+      error: null,
     };
   }
 
   static failRes({status='0', error='0', msg='fail'}) {
     return {
-      status, error, msg,
-      data: null
+      status,
+      data: null,
+      msg,
+      error,
     };
   }
 

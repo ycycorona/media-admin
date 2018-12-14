@@ -11,15 +11,12 @@ class LoginController extends BaseCon {
 
     ctx.validate(loginParamsRules)
 
-/*    try {
-
-    } catch (e) {
-      console.log(e)
-      console.log('参数错误')
-    }*/
-
     const result = await service.login.index(ctx.request.body)
-    ctx.body = BaseCon.successRes(result);
+    if (result) {
+      ctx.body = BaseCon.successRes('login success');
+    } else {
+      ctx.body = BaseCon.failRes('login fail');
+    }
   }
 }
 

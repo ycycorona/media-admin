@@ -1,5 +1,6 @@
 const crypto = require('crypto')
 const passwdSalt = 'av_data_base'
+const squel = require("squel");
 module.exports = {
     md5(val) {
       const md5 = crypto.createHash('md5')
@@ -14,6 +15,8 @@ module.exports = {
       if (!val) {return ''}
       const saltPasswd = `${val}:${passwdSalt}`
       return this.md5(saltPasswd)
-    }
+    },
+    squel,
+    squelMysql: squel.useFlavour('mysql')
 };
 
