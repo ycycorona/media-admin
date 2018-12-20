@@ -1,8 +1,19 @@
 #查询用户账号密码
-select u.id, u.user_name, a.auth_type, a.token
-FROM users u INNER JOIN user_auths a
-ON u.id=a.id AND u.`status`=1 AND a.`status`=1
-And u.user_name='root' AND auth_type='passwd' AND token='4b2609389ff786f6eb3e288e774117ed'
+
+select u.user_name, u.avatar, u.nick_name, u.status AS status_user, a.id_user, a.auth_type, a.identifier, a.token, a.status AS status_auth
+FROM
+users AS u
+INNER JOIN
+(select * FROM user_auths a
+WHERE a.auth_type='passwd' AND a.identifier='root') AS a
+ON u.id=a.id
+
+select u.user_name, u.avatar, u.nick_name, u.status AS status_user, a.id_user, a.auth_type, a.identifier, a.token, a.status AS status_auth
+FROM
+users AS u
+INNER JOIN
+user_auths AS a
+ON u.id=a.id AND a.identifier='root'
 
 
 SELECT `s.name` AS "Student name" FROM `students` `s`
