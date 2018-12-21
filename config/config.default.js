@@ -1,7 +1,21 @@
 'use strict';
+const path = require('path');
+const fs = require('fs');
 
 module.exports = appInfo => {
   const config = exports = {};
+
+  config.siteFile = {
+    '/favicon.ico': fs.readFileSync(path.join(appInfo.baseDir, 'app/web/asset/images/favicon.ico'))
+  };
+
+  exports.vuessr = {
+    layout: path.join(appInfo.baseDir, 'app/web/view/layout.html'),
+    renderOptions: {
+      basedir: path.join(appInfo.baseDir, 'app/view')
+    }
+  };
+
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1544496710762_6467';
@@ -45,7 +59,14 @@ module.exports = appInfo => {
   };
 
   config.logger = {
+    consoleLevel: 'DEBUG',
+    dir: path.join(appInfo.root, 'logs')
     //dir: '/path/to/your/custom/log/dir', // 自定义日志路径
+  };
+
+  exports.static = {
+    prefix: '/public/',
+    dir: path.join(appInfo.baseDir, 'public')
   };
 
   config.bodyParser = {
