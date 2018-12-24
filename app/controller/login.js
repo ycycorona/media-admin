@@ -11,11 +11,13 @@ class LoginController extends BaseCon {
 
     ctx.validate(loginParamsRules)
 
-    const result = await service.login.index(ctx.request.body)
-    if (result) {
+    const res = await service.login.index(ctx.request.body)
+
+    if (res.flag) {
       ctx.body = BaseCon.successRes('login success');
+      ctx.logger.info('登陆成功')
     } else {
-      ctx.body = BaseCon.failRes('login fail');
+      ctx.body = BaseCon.failRes({msg: res.msg});
     }
   }
 }

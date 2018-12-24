@@ -2,22 +2,22 @@
   "development": {
     "username": "root",
     "password": "ycy6323892",
-    "database": "media_db",
+    "database": "media_db_seq",
     "host": "47.105.46.120",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "password": "ycy6323892",
+    "database": "media_db_seq",
+    "host": "47.105.46.120",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "password": "ycy6323892",
+    "database": "media_db_seq",
+    "host": "47.105.46.120",
     "dialect": "mysql"
   }
 }
