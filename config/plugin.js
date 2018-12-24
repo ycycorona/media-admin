@@ -13,21 +13,6 @@ exports.validate = {
   package: 'egg-validate',
 };
 
-exports.webpack = {
-  enable: true,
-  package: 'egg-webpack'
-};
-
-exports.webpackvue = {
-  enable: true,
-  package: 'egg-webpack-vue'
-};
-
-exports.vuessr = {
-  enable: true,
-  package: 'egg-view-vue-ssr'
-};
-
 exports.logview = {
   package: 'egg-logview',
   env: ['local']

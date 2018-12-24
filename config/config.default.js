@@ -6,14 +6,7 @@ module.exports = appInfo => {
   const config = exports = {};
 
   config.siteFile = {
-    '/favicon.ico': fs.readFileSync(path.join(appInfo.baseDir, 'app/web/asset/images/favicon.ico'))
-  };
-
-  exports.vuessr = {
-    layout: path.join(appInfo.baseDir, 'app/web/view/layout.html'),
-    renderOptions: {
-      basedir: path.join(appInfo.baseDir, 'app/view')
-    }
+    '/favicon.ico': fs.readFileSync(path.join(appInfo.baseDir, 'public/asset/images/favicon.ico'))
   };
 
 
