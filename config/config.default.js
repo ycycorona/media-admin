@@ -26,12 +26,12 @@ module.exports = appInfo => {
     database: 'media_db',
     define: {
       timestamps: false,
-      freezeTableName: true,
-      underscored: true,
+      freezeTableName: true, // 表名不自动变复数
+      underscored: true, // 变成下划线字段名
     },
   };
 
-  config.mysql = {
+/*  config.mysql = {
     // database configuration
     client: {
       // host
@@ -49,7 +49,7 @@ module.exports = appInfo => {
     app: true,
     // load into agent, default is close
     agent: false,
-  };
+  };*/
 
   config.logger = {
     consoleLevel: 'DEBUG',

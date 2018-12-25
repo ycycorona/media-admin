@@ -18,7 +18,7 @@ exports.logview = {
   env: ['local']
 };
 
-/*exports.sequelize = {
+exports.sequelize = {
   enable: true,
   package: 'egg-sequelize',
-};*/
+};
