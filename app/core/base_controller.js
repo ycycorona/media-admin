@@ -6,11 +6,11 @@ class BaseController extends Controller {
       status: '1',
       data,
       msg: 'success',
-      error: null,
+      error: '',
     };
   }
 
-  static failRes({status='0', error='0', msg='fail'}) {
+  static failRes({status='0', error='1000', msg='fail'}) {
     return {
       status,
       data: null,

@@ -1,7 +1,7 @@
 const Service = require('egg').Service;
 
 class LoginService extends Service {
-  async index({userName, token, authType}) {
+  async index({identifier, token, authType}) {
     const {app, ctx, ctx: {helper} } = this
     const squelMysql = helper.squelMysql
     const tokenMD5 = helper.md5passwdSalt(token)
@@ -12,7 +12,7 @@ class LoginService extends Service {
 
     const condition = squelMysql.expr()
       .and('u.id=a.id AND u.status=1 AND a.status=1')
-      .and('u.user_name=? AND auth_type=?', userName, authType)
+      .and('u.user_name=? AND auth_type=?', identifier, authType)
       .toString()
     const querySql = squelMysql.select()
       .field('u.id')
