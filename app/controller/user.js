@@ -1,25 +1,6 @@
 'use strict';
 const Base = require('../core/base_controller');
 class LoginController extends Base {
-
-  async login() {
-    const {ctx, service} = this;
-
-    const loginParamsRules = {
-      identifier: {type: 'string'},
-      token: {type: 'string'},
-      authType: {type: 'string'}
-    }
-
-    ctx.validate(loginParamsRules)
-
-    const result = await service.login.index(ctx.request.body)
-    if (result) {
-      ctx.body = ctx.successRes('login success');
-    } else {
-      ctx.body = ctx.failRes({status: '0', error: '1001', msg: 'login fail'});
-    }
-  }
   // 登录成功
   async loginSuccess() {
     const {ctx, service} = this;
@@ -34,7 +15,7 @@ class LoginController extends Base {
   // 登录失败
   async loginFail() {
     const {ctx} = this;
-    ctx.body = ctx.failRes({status: '0', error: '1001', msg: 'login fail'});
+    ctx.body = ctx.failRes({status: '0', error: '1001', msg: ctx.session.passportFailMsg});
   }
 
   // 登出

@@ -10,5 +10,5 @@ class User extends BaseEntity{
 
 module.exports = User
 
-const per = new User({user_name: 'ycy', age: 123})
-console.log(per)
+/*const per = new User({user_name: 'ycy', age: 123})
+console.log(per)*/
