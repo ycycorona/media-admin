@@ -2,6 +2,10 @@
 
 // had enabled by egg
 // exports.static = true;
+exports.passportLocal = {
+  enable: true,
+  package: 'egg-passport-local',
+};
 
 exports.mysql = {
   enable: true,
@@ -18,7 +22,9 @@ exports.logview = {
   env: ['local']
 };
 
-exports.sequelize = {
+exports.passport = {
   enable: true,
-  package: 'egg-sequelize',
+  package: 'egg-passport',
 };
+
+

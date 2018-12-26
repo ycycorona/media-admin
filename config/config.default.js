@@ -14,24 +14,15 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1544496710762_6467';
 
   // add your config here
-  config.middleware = [ 'notfoundHandler' ];
+  config.middleware = [ 'notfoundHandler', 'loginStatus'];
 
-
-  config.sequelize = {
-    dialect: 'mysql',
-    host: '47.105.46.120',
-    user: 'root',
-    password: 'ycy6323892',
-    port: 3306,
-    database: 'media_db',
-    define: {
-      timestamps: false,
-      freezeTableName: true, // 表名不自动变复数
-      underscored: true, // 变成下划线字段名
-    },
+  //
+  config.passportLocal = {
+    usernameField: 'identifier',
+    passwordField: 'token',
   };
 
-/*  config.mysql = {
+  config.mysql = {
     // database configuration
     client: {
       // host
@@ -49,7 +40,7 @@ module.exports = appInfo => {
     app: true,
     // load into agent, default is close
     agent: false,
-  };*/
+  };
 
   config.logger = {
     consoleLevel: 'DEBUG',
@@ -119,6 +110,11 @@ module.exports = appInfo => {
     httpOnly: true,
     encrypt: true,
   };
+
+  config.noLoginPath = [
+    '^/user/passport/local',
+    '^/user/passport/logout$',
+  ]
 
   return config;
 };
