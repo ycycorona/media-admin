@@ -14,7 +14,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1544496710762_6467';
 
   // add your config here
-  config.middleware = [ 'notfoundHandler', 'loginStatus'];
+  config.middleware = ['notfoundHandler', 'loginInterceptor', 'adminInterceptor'];
 
   //
   config.passportLocal = {
@@ -75,7 +75,7 @@ module.exports = appInfo => {
       ctx.status = 500;
     },*/
     json(err, ctx) {
-      console.log(err)
+      //console.log(err)
       // json hander
       ctx.body = { msg: 'uncaught json request error', status: '0', error: '-110' };
       switch (err.code) {
@@ -86,7 +86,7 @@ module.exports = appInfo => {
         default:
           break
       }
-      console.log(err)
+      //console.log(err)
       ctx.status = 500;
     },
 /*    jsonp(err, ctx) {
@@ -114,6 +114,11 @@ module.exports = appInfo => {
   config.noLoginPath = [
     '^/user/passport/local',
     '^/user/passport/logout$',
+    '^/user/register',
+  ]
+
+  config.adminPath = [
+    '^/admin'
   ]
 
   return config;

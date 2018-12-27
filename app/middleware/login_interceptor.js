@@ -1,5 +1,5 @@
 module.exports = () => {
-  return async function loginStatus(ctx, next) {
+  return async function loginInterceptor(ctx, next) {
     // 是否不需要登录
     let isMatchNologinList = ctx.app.config.noLoginPath.findIndex((path) => {
       return !!ctx.originalUrl.match(new RegExp(path))

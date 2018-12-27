@@ -1,5 +1,4 @@
 const passwdSalt = 'av_data_base'
-const squel = require("squel");
 const thinkHelper = require('think-helper')
 
 const helper = {
@@ -15,8 +14,30 @@ const helper = {
     const saltPasswd = `${val}:${passwdSalt}`
     return this.md5(saltPasswd)
   },
-  squel,
-  squelMysql: squel.useFlavour('mysql')
+  /**
+   * 驼峰转蛇形命名
+   * @param obj
+   * @constructor
+   */
+  objSnakeCase(obj) {
+    const newObj = {}
+    Object.keys(obj).forEach((key, index) => {
+      newObj[thinkHelper.snakeCase(key)] = obj[key]
+    })
+    return newObj
+  },
+  /**
+   * 蛇形转驼峰命名
+   * @param obj
+   * @constructor
+   */
+  objCamelCase(obj) {
+    const newObj = {}
+    Object.keys(obj).forEach((key, index) => {
+      newObj[thinkHelper.camelCase(key)] = obj[key]
+    })
+    return newObj
+  }
 }
 Object.assign(helper, thinkHelper)
 
