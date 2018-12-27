@@ -4,13 +4,13 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('zmeta_users_roles', {
     id: {
       type: DataTypes.INTEGER(3),
-      allowNull: false
+      allowNull: false,
     },
     user_role_text: {
       type: DataTypes.STRING(50),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'zmeta_users_roles'
+    tableName: 'zmeta_users_roles',
   });
 };

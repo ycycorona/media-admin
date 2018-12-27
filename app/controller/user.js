@@ -2,65 +2,64 @@
 const Base = require('../core/base_controller');
 
 class LoginController extends Base {
-  //注册
+  // 注册
   async register() {
-    const {ctx} = this
+    const { ctx } = this;
     const registerRule = {
-      userName: {type: 'string'},
-      avatar: {type: 'string', required: false},
-      nickName: {type: 'string'},
-      authType: {type: 'string'},
-      token: {type: 'string'},
-    }
-    ctx.validate(registerRule)
-    const registerRes = await ctx.service.userService.register(ctx.request.body)
+      userName: { type: 'string' },
+      avatar: { type: 'string', required: false },
+      nickName: { type: 'string' },
+      authType: { type: 'string' },
+      token: { type: 'string' },
+    };
+    ctx.validate(registerRule);
+    const registerRes = await ctx.service.userService.register(ctx.request.body);
     if (registerRes.flag) {
-      ctx.body = ctx.successRes('用户注册成功');
-      ctx.login(ctx.request.body.userName)
+      ctx.body = ctx.successRes(registerRes.data.userInfo);
     } else {
-      ctx.body = ctx.failRes({status: '0', error: '1004', msg: registerRes.errorMsg});
+      ctx.body = ctx.failRes({ status: '0', error: '1004', msg: registerRes.errorMsg });
     }
   }
   // 登录成功
   async loginSuccess() {
-    const {ctx, service} = this;
-    const flag = ctx.isAuthenticated() // 再次确认一下授权信息
+    const { ctx, service } = this;
+    const flag = ctx.isAuthenticated(); // 再次确认一下授权信息
     if (flag) {
       ctx.body = ctx.successRes(flag);
     } else {
-      ctx.body = ctx.failRes({status: '0', error: '1002', msg: 'no login info'});
+      ctx.body = ctx.failRes({ status: '0', error: '1002', msg: 'no login info' });
     }
   }
 
   // 登录失败
   async loginFail() {
-    const {ctx} = this;
-    ctx.body = ctx.failRes({status: '0', error: '1001', msg: ctx.session.passportFailMsg});
+    const { ctx } = this;
+    ctx.body = ctx.failRes({ status: '0', error: '1001', msg: ctx.session.passportFailMsg });
   }
 
   // 登出
   async logout() {
-    const {ctx} = this;
-    ctx.logout()
-    ctx.body = ctx.successRes('logout')
+    const { ctx } = this;
+    ctx.logout();
+    ctx.body = ctx.successRes('logout');
   }
 
   // 获取当前用户信息
   async getUserInfo() {
-    const {ctx} = this;
-    ctx.body = ctx.user
+    const { ctx } = this;
+    ctx.body = ctx.user;
   }
 
   // 根据用户名获取用户信息
   async getUserInfoByUserName() {
     const { ctx } = this;
-    const userName = ctx.request.body.userName = ctx.params.userName
+    const userName = ctx.request.body.userName = ctx.params.userName;
     const rule = {
-      userName: {type: 'string'},
-    }
-    ctx.validate(rule)
-    const userInfo = await ctx.service.userService.getUserInfoByUserName(userName)
-    ctx.body = userInfo
+      userName: { type: 'string' },
+    };
+    ctx.validate(rule);
+    const userInfo = await ctx.service.userService.getUserInfoByUserName(userName);
+    ctx.body = userInfo;
   }
 
 }

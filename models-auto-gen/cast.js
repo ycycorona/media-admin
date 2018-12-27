@@ -6,26 +6,26 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     id_pro: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     id_person: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     id_role: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     priority: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '1'
-    }
+      defaultValue: '1',
+    },
   }, {
-    tableName: 'cast'
+    tableName: 'cast',
   });
 };

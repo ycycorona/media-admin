@@ -1,10 +1,10 @@
-const BaseModel = require('./base_model')
+const BaseModel = require('./base_model');
 
-const UserEntity = require('./entity/User.js')
-const AuthEntity = require('./entity/Auth.js')
+const UserEntity = require('./entity/User.js');
+const AuthEntity = require('./entity/Auth.js');
 module.exports = class UserModel extends BaseModel {
   constructor(...args) {
-    super(...args)
+    super(...args);
   }
 
   async selectUserAuth(authType, identifier) {
@@ -25,9 +25,9 @@ module.exports = class UserModel extends BaseModel {
             'a.identifier=? AND a.auth_type=?', identifier, authType
           ), 'a', 'u.id = a.id_user'
       )
-      .toString()
-    const resList = await this.mysqlDb.query(querySql)
-    return this.helper.isEmpty(resList) ? null : resList[0]
+      .toString();
+    const resList = await this.mysqlDb.query(querySql);
+    return this.helper.isEmpty(resList) ? null : resList[0];
   }
   // 获取用户信息
   async getUserInfoByUserName(userName = '') {
@@ -36,11 +36,11 @@ module.exports = class UserModel extends BaseModel {
       .where(
         'u.user_name=?', userName
       )
-      .toString()
-    const resList = await this.mysqlDb.query(querySql)
-    return this.helper.isEmpty(resList) ? null : resList[0]
+      .toString();
+    const resList = await this.mysqlDb.query(querySql);
+    return this.helper.isEmpty(resList) ? null : resList[0];
   }
-// 获取用户角色
+  // 获取用户角色
   async getUserRolesByUserName(userName = '') {
     const querySql = this.squel.select()
       .field('user_role')
@@ -50,33 +50,35 @@ module.exports = class UserModel extends BaseModel {
         this.squel.select().field('id').from('users')
           .where('user_name=?', userName)
       )
-      .toString()
-    const resList = await this.mysqlDb.query(querySql)
-    return resList
+      .toString();
+    const resList = await this.mysqlDb.query(querySql);
+    return resList;
   }
   // 注册
   async register(userObj) {
-    const user = new UserEntity(userObj)
-    const auth = new AuthEntity(userObj)
-    auth.identifier = userObj.userName
+    const user = new UserEntity(userObj);
+    const auth = new AuthEntity(userObj);
+    auth.identifier = userObj.userName;
     const insertUserRes = {
       flag: false,
       error: '',
-      errorMsg: ''
-    }
+      errorMsg: '',
+      data: {},
+    };
     const transactionResult = await this.mysqlDb.beginTransactionScope(async conn => {
       const insertUserRes = await conn.insert('users', user);
       const insertAuthRes = await conn.insert('user_auths', auth);
-      return true
+      return true;
     }, this.ctx).catch(err => {
-      insertUserRes.error = err.errno
-      insertUserRes.errorMsg = err.message
-    })
+      insertUserRes.error = err.errno;
+      insertUserRes.errorMsg = err.message;
+    });
 
     if (transactionResult) {
-      insertUserRes.flag = true
+      insertUserRes.flag = true;
+      insertUserRes.data.userInfo = await this.getUserInfoByUserName(user.user_name);
     }
 
-    return insertUserRes
+    return insertUserRes;
   }
-}
+};

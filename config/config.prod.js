@@ -3,6 +3,6 @@
 module.exports = appInfo => {
   const config = exports = {};
 
-  config.test = 'test'
+  config.test = 'test';
   return config;
 };

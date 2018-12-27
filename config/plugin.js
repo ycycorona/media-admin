@@ -19,12 +19,11 @@ exports.validate = {
 
 exports.logview = {
   package: 'egg-logview',
-  env: ['local']
+  env: [ 'local' ],
 };
 
 exports.passport = {
   enable: true,
   package: 'egg-passport',
 };
-
 

@@ -6,47 +6,47 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     user_name: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      unique: true
+      unique: true,
     },
     avatar: {
       type: DataTypes.STRING(256),
       allowNull: false,
-      defaultValue: ''
+      defaultValue: '',
     },
     nick_name: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: ''
+      defaultValue: '',
     },
     create_time: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
     update_time: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
     id_user_create_by: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     id_user_update_by: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
-      defaultValue: '1'
-    }
+      defaultValue: '1',
+    },
   }, {
-    tableName: 'users'
+    tableName: 'users',
   });
 };

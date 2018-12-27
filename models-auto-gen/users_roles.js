@@ -6,17 +6,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     user_role: {
       type: DataTypes.INTEGER(3),
-      allowNull: false
+      allowNull: false,
     },
     id_user: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'users_roles'
+    tableName: 'users_roles',
   });
 };

@@ -5,14 +5,14 @@ module.exports = {
       data,
       msg: 'success',
       error: '',
-    }
+    };
   },
-  failRes({status='0', error='1000', msg='fail'}) {
+  failRes({ status = '0', error = '1000', msg = 'fail' }) {
     return {
       status,
       data: '',
       msg,
       error,
     };
-  }
+  },
 };

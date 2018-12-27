@@ -6,17 +6,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     id_pro: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     series: {
       type: DataTypes.STRING(256),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'series'
+    tableName: 'series',
   });
 };

@@ -6,40 +6,40 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     comment: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     id_user: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     id_pro: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     floor: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     create_time: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
     update_time: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
     status: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
-      defaultValue: '1'
-    }
+      defaultValue: '1',
+    },
   }, {
-    tableName: 'comments'
+    tableName: 'comments',
   });
 };

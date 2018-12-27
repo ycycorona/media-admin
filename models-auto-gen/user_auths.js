@@ -6,30 +6,30 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     id_user: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
     },
     auth_type: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     identifier: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     token: {
       type: DataTypes.STRING(500),
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
-      defaultValue: '1'
-    }
+      defaultValue: '1',
+    },
   }, {
-    tableName: 'user_auths'
+    tableName: 'user_auths',
   });
 };

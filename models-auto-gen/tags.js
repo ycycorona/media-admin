@@ -6,13 +6,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     tag: {
       type: DataTypes.STRING(200),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'tags'
+    tableName: 'tags',
   });
 };
