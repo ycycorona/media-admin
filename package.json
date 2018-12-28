@@ -13,8 +13,9 @@
     "egg-passport-local": "^1.2.1",
     "egg-scripts": "^2.5.0",
     "egg-validate": "^2.0.2",
+    "i18n-iso-countries": "^3.7.8",
     "lodash": "^4.17.11",
-    "shortid": "^2.2.14",
+    "nanoid": "^2.0.0",
     "squel": "^5.12.2",
     "think-helper": "^1.1.2"
   },
@@ -42,7 +43,8 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "sequelize": "node_modules/.bin/sequelize"
+    "test-insert": "set DEBUG=ali-rds* && egg-bin test test/app/model/person_insert.test.js --full-trace",
+    "test-delete": "set DEBUG=ali-rds* && egg-bin test test/app/model/person_delete.test.js --full-trace"
   },
   "ci": {
     "version": "8"
