@@ -34,7 +34,7 @@ class LoginController extends Base {
   // 登录失败
   async loginFail() {
     const { ctx } = this;
-    ctx.body = ctx.failRes({ status: '0', error: '1001', msg: ctx.session.passportFailMsg });
+    ctx.body = ctx.failRes({ status: '0', error: '1001', msg: 'login fail' + ctx.session.passportFailMsg });
   }
 
   // 登出
@@ -53,11 +53,11 @@ class LoginController extends Base {
   // 根据用户名获取用户信息
   async getUserInfoByUserName() {
     const { ctx } = this;
-    const userName = ctx.request.body.userName = ctx.params.userName;
+    const userName = ctx.params.userName;
     const rule = {
       userName: { type: 'string' },
     };
-    ctx.validate(rule);
+    ctx.validate(rule, ctx.params);
     const userInfo = await ctx.service.userService.getUserInfoByUserName(userName);
     ctx.body = userInfo;
   }

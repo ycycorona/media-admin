@@ -9,7 +9,3 @@ class Person extends BaseEntity {
 }
 
 module.exports = Person;
-
-const ycy = new Person()
-
-

@@ -14,7 +14,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1544496710762_6467';
 
   // add your config here
-  config.middleware = [ 'notfoundHandler', 'loginInterceptor', 'adminInterceptor' ];
+  config.middleware = [ 'errorHandler', 'loginInterceptor', 'adminInterceptor' ];
 
   //
   config.passportLocal = {
@@ -88,6 +88,9 @@ module.exports = appInfo => {
       ctx.body = '<h3>error</h3>';
       ctx.status = 500;
     },*/
+    html(err, ctx) {
+      console.log(err)
+    },
     json(err, ctx) {
       // console.log(err)
       // json hander
