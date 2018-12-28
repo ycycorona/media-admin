@@ -18,7 +18,14 @@ class PersonController extends Base {
       idJavbus: { type: 'string', required:false},
     }
     ctx.validate(userRule)
-    ctx.body = 1
+
+    const personCreateServiceRes =  await ctx.service.personService.create(ctx.request.body)
+    if (personCreateServiceRes.flag) {
+      ctx.body = ctx.successRes(personCreateServiceRes.data)
+    } else {
+      ctx.body = ctx.failRes({msg: personCreateServiceRes.errorMsg})
+    }
+
   }
 }
 

@@ -1,5 +1,7 @@
-const passwdSalt = 'av_data_base';
-const thinkHelper = require('think-helper');
+const passwdSalt = 'av_data_base'
+const thinkHelper = require('think-helper')
+const nanoid = require('nanoid')
+const squel = (require('squel')).useFlavour('mysql')
 
 const helper = {
   /**
@@ -86,6 +88,8 @@ const helper = {
       return newObj;
     }
   },
+  nanoid,
+  squel
 };
 Object.assign(helper, thinkHelper);
 

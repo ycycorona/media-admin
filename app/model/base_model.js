@@ -6,7 +6,7 @@ module.exports = class BaseModel {
   constructor(ctx, option={}) {
     this.ctx = ctx
     this.tableName = option.tableName || this.helper.snakeCase(this.constructor.name)
-    this.entity = option.entity || null
+    this.Entity = option.Entity || null
     this.squel = squel.useFlavour('mysql')
   }
   // 查询一条数据
@@ -23,7 +23,7 @@ module.exports = class BaseModel {
    * @returns {Promise<*>}
    */
   async insertRow(insertObj) {
-    let entityObj = new this.entity(insertObj)
+    let entityObj = new this.Entity(insertObj)
     return await this.mysqlDb.insert(this.tableName, entityObj);
   }
   /**
@@ -34,7 +34,7 @@ module.exports = class BaseModel {
   async insertRows(insertArray = []) {
     const entityArray = []
     insertArray.forEach((item) => {
-      entityArray.push(new this.entity(item))
+      entityArray.push(new this.Entity(item))
     })
     return await this.mysqlDb.insert(this.tableName, entityArray);
   }
@@ -45,7 +45,7 @@ module.exports = class BaseModel {
    * @returns {Promise<*>}
    */
   async updateRow(row, option) {
-    const entityObj = new this.entity(row)
+    const entityObj = new this.Entity(row)
     return await this.mysqlDb.update(this.tableName, entityObj, option);
   }
 
@@ -58,7 +58,7 @@ module.exports = class BaseModel {
     const entityArray = []
     rows.forEach((item) => {
       if(item.row) {
-        entityArray.push(Object.assign({}, item, {row: new this.entity(item.row)}))
+        entityArray.push(Object.assign({}, item, {row: new this.Entity(item.row)}))
       }
     })
     return await this.mysqlDb.updateRows(this.tableName, entityArray);
@@ -69,7 +69,17 @@ module.exports = class BaseModel {
    * @returns {Promise<void>}
    */
   async delete(option) {
-    return await this.mysqlDb.delete(this.tableName, new this.entity(option));
+    return await this.mysqlDb.delete(this.tableName, new this.Entity(option));
+  }
+  async checkExist(whereSql) {
+    const sql = this.squel.select()
+      .from(this.tableName, 't')
+      .where(
+        whereSql
+      )
+      .toString();
+    const res = await this.mysqlDb.query(sql);
+    return !this.helper.isEmpty(res)
   }
   static get _() {
     return _

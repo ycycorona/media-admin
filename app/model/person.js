@@ -6,6 +6,4 @@ module.exports = class Person extends BaseModel {
   constructor(...args) {
     super(...args);
   }
-
-
 };
