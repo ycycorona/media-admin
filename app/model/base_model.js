@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const squel = require('squel');
-const thinkHelper = require('think-helper');
 
 module.exports = class BaseModel {
   constructor(ctx, option={}) {

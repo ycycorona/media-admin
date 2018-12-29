@@ -15,8 +15,8 @@ describe('test/app/model/person_delete.test.js', () => {
   it('test person delete ', async () => {
     const ctx = app.mockContext();
     const PersonEntity = require(path.join(process.cwd(), '/app/model/entity/Person.js'));
-    const personModel = new (require(path.join(process.cwd(), '/app/model/person.js')))(ctx, {tableName: 'persons',entity: PersonEntity});
-    const result = await personModel.delete({cn_name: ['x', 'y']})
+    const personModel = new (require(path.join(process.cwd(), '/app/model/person.js')))(ctx, {tableName: 'persons',Entity: PersonEntity});
+    const result = await personModel.delete({cn_name: 'x'})
       .catch(err => {
         console.log(err)
       })

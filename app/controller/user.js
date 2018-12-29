@@ -34,7 +34,7 @@ class LoginController extends Base {
   // 登录失败
   async loginFail() {
     const { ctx } = this;
-    ctx.body = ctx.failRes({ status: '0', error: '1001', msg: 'login fail' + ctx.session.passportFailMsg });
+    ctx.body = ctx.failRes({ status: '0', error: '1001', msg: 'login fail' + `:${ctx.session.passportFailMsg}||'登录字段不全'` });
   }
 
   // 登出

@@ -3,11 +3,12 @@ module.exports = () => {
     try {
       await next();
       if (ctx.status === 404 && !ctx.body) {
-        if (ctx.acceptJSON) {
+        ctx.body = ctx.failRes({error: '1006', msg:'404 not found', status: '0'})
+/*        if (ctx.acceptJSON) {
           ctx.body = { error: 'Not Found' };
         } else {
           ctx.body = '<h1>Page Not Found</h1>';
-        }
+        }*/
       }
     } catch (err) {
       ctx.app.emit('error', err, ctx);

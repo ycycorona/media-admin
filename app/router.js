@@ -19,6 +19,10 @@ module.exports = app => {
   router.get('/user/info', controller.user.getUserInfo); // 获取用户信息
   router.get('/admin/user/info/:userName', controller.user.getUserInfoByUserName); // 根据用户名获取用户信息
 
-  router.resources('/admin/person', controller.person); // 人员
+  router.post('/admin/person/create', controller.person.create); // 创建人员
+  router.post('/admin/person/update', controller.person.update); // 修改人员
+  router.post('/admin/person/delete', controller.person.destory); // 删除人员
+  router.get('/admin/person/detail', controller.person.detail); // 删除人员
+  router.get('/admin/person/list', controller.person.list); // 查询人员列表
 };
 

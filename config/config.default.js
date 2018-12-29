@@ -128,6 +128,12 @@ module.exports = appInfo => {
     encrypt: true,
   };
 
+  exports.validate = {
+    //convert: true,
+    // validateRoot: false,
+    widelyUndefined: true // convert empty string(''), NaN, Null to undefined
+  };
+
   config.noLoginPath = [
     '^/user/passport/local',
     '^/user/passport/logout$',
